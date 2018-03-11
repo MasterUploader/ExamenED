@@ -6,9 +6,10 @@ import { AngularFireAuth} from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import { Observable } from '@firebase/util';
 
-import { WelcomePage } from '../welcome/welcome'; //Página de Welcome
 import {HomePage} from '../home/home'
 import {RegisterPage} from '../register/register'; //Página de Registro
+import { ProfilePage } from '../profile/profile';
+
 
 
 
@@ -30,6 +31,8 @@ export class LoginPage {
   @ViewChild('email') email;
   @ViewChild('password') password;
   currentUser:any;
+  
+  
 
 	provider = {
 		loggedin: false,
@@ -53,6 +56,7 @@ export class LoginPage {
       this.currentUser = {uid:user.uid, photoURL: user.photoURL};
       
     });
+    
   }
   ionViewDidLoad() {
      console.log('ionViewDidLoad LoginPage');
@@ -60,14 +64,15 @@ export class LoginPage {
   
 loginWithEmail(){
   this.afAuth.auth.signInWithEmailAndPassword(this.email.value, this.password.value)
-  	.then( res => {
+  	.then( response => {
+      firebase.auth().setPersistence;
   		this.provider.loggedin = true;
-  		this.provider.name = res.displayName;
-  		this.provider.email = res.email;
-  		this.provider.profilePicture = res.photoURL;
-  		console.log('from Email', res);
+  		this.provider.name = response.displayName;
+  		this.provider.email = response.email;
+  		this.provider.profilePicture = response.photoURL;
+  		console.log('from Email', response);
   		this.showAlert('Success! you\'re logged in by Email');
-    	this.navCtrl.setRoot(WelcomePage, this.provider);
+    	this.navCtrl.setRoot(ProfilePage, this.provider);
   	})
   	.catch( error => {
   		console.log('got error',error);
@@ -101,17 +106,19 @@ loginWithGmail(){
   this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
   .then((response)=>{
 
+      
       this.provider.loggedin = true;
   		this.provider.name = response.user.displayName;
   		this.provider.email = response.user.email;
   		this.provider.profilePicture = response.user.photoURL;
   		console.log('from Google',response);
   		this.showAlert('Success! you\'re logged in by Google');
-      this.navCtrl.setRoot(WelcomePage, this.provider);
+      this.navCtrl.setRoot(ProfilePage, this.provider);
       
      console.log('resultado login google:', response);
     
     const userRef = this.afDatabase.list('users');
+     
 
     userRef.update(response.user.uid, 
       {
@@ -131,14 +138,29 @@ loginWithGmail(){
 //Inicia Login Con Facebook
 loginWithFacebook(){
   this.afAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider())
-  	.then( res => {
+  	.then( response => {
   		this.provider.loggedin = true;
-  		this.provider.name = res.user.displayName;
-  		this.provider.email = res.user.email;
-  		this.provider.profilePicture = res.user.photoURL;
-  		console.log('from Facebook', res);
+  		this.provider.name = response.user.displayName;
+  		this.provider.email = response.user.email;
+  		this.provider.profilePicture = response.user.photoURL;
+  		console.log('from Facebook', response);
   		this.showAlert('Success! you\'re logged in by Facebook');
-  		this.navCtrl.setRoot(WelcomePage, this.provider);
+      this.navCtrl.setRoot(ProfilePage, this.provider);
+      console.log('resultado login google:', response);
+    
+    const userRef = this.afDatabase.list('users');
+     
+
+    userRef.update(response.user.uid, 
+      {
+        userId: response.user.uid, 
+        displayName: response.user.displayName,
+        photoURL: response.user.photoURL
+        })
+  	.catch( error => {
+      console.log('got error',error);
+      this.showAlert(error.message);
+      })
 });
 
 }
@@ -146,14 +168,29 @@ loginWithFacebook(){
 //Inicia Login con Github
 loginWithGithub(){
   this.afAuth.auth.signInWithPopup(new firebase.auth.GithubAuthProvider())
-  	.then( res => {
+  	.then( response => {
   		this.provider.loggedin = true;
-  		this.provider.name = res.user.displayName;
-  		this.provider.email = res.user.email;
-  		this.provider.profilePicture = res.user.photoURL;
-  		console.log('from Github',res);
+  		this.provider.name = response.user.displayName;
+  		this.provider.email = response.user.email;
+  		this.provider.profilePicture = response.user.photoURL;
+  		console.log('from Github',response);
   		this.showAlert('Success! you\'re logged in by Github');
-  		this.navCtrl.setRoot(WelcomePage, this.provider);
+      this.navCtrl.setRoot(ProfilePage, this.provider);
+      console.log('resultado login google:', response);
+    
+    const userRef = this.afDatabase.list('users');
+     
+
+    userRef.update(response.user.uid, 
+      {
+        userId: response.user.uid, 
+        displayName: response.user.displayName,
+        photoURL: response.user.photoURL
+        })
+  	.catch( error => {
+      console.log('got error',error);
+      this.showAlert(error.message);
+      })
 });
 
 }
@@ -161,18 +198,39 @@ loginWithGithub(){
 //Inicia Login con Twitter
 loginWithTwitter() {
   this.afAuth.auth.signInWithPopup(new firebase.auth.TwitterAuthProvider())
-  .then( res => {
+  .then( response => {
     this.provider.loggedin = true;
-    this.provider.name = res.user.displayName;
-    this.provider.email = res.user.email;
-    this.provider.profilePicture = res.user.photoURL;
-    console.log('from Twitter',res);
+    this.provider.name = response.user.displayName;
+    this.provider.email = response.user.email;
+    this.provider.profilePicture = response.user.photoURL;
+    console.log('from Twitter',response);
     this.showAlert('Success! you\'re logged in by Twitter');
-    this.navCtrl.setRoot(WelcomePage, this.provider);
+    this.navCtrl.setRoot(ProfilePage, this.provider);
+    console.log('resultado login google:', response);
+    
+    const userRef = this.afDatabase.list('users');
+     
+
+    userRef.update(response.user.uid, 
+      {
+        userId: response.user.uid, 
+        displayName: response.user.displayName,
+        photoURL: response.user.photoURL
+        })
+  	.catch( error => {
+      console.log('got error',error);
+      this.showAlert(error.message);
+      })
   });
 }
 //Finaliza Login con Twitter
+// Devuelve la session
+get Session(){
+  return this.afAuth.authState;
+ }
+
 }
+
 
 
 

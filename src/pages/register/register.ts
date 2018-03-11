@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { LoginPage } from '../login/login';
+import { User } from '../../models/user';
+import { AngularFireAuth } from "angularfire2/auth";
+
 
 /**
  * Generated class for the RegisterPage page.
@@ -10,33 +13,32 @@ import { LoginPage } from '../login/login';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+//@IonicPage()
 @Component({
   selector: 'page-register',
   templateUrl: 'register.html',
 })
 export class RegisterPage {
+  user = {} as User;
+  imageURI:any;
+  imageFileName:any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController) {}
-  ionViewDidLoad() {
-     console.log('ionViewDidLoad LoginPage');
+  constructor(
+    private afAuth: AngularFireAuth,
+    public navCtrl: NavController, 
+    public navParams: NavParams) {
   }
-  /*
-  register(){
-    
-    if(this.user.value == "admin" && this.password.value == "admin"){
+
+  async register(user: User) {
+    try {
+      const result = await this.afAuth.auth.createUserWithEmailAndPassword(user.email, user.password);
+      console.log(result);
       this.navCtrl.push(LoginPage);
-    }else{
-       let alert = this.alertCtrl.create({
-          title: 'Datos incorrectos',
-          subTitle: 'Los datos ingresados son incorrectos.',
-           buttons: ['OK']
+    }
+    catch (e) {
+      console.error(e);
+    }
+  }
 
-  });
-  alert.present();
   
-  }
-  
-  }
-  */
-  }
+}

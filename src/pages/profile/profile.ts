@@ -2,8 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {AngularFireAuth} from 'angularfire2/auth';
 import { HomePage } from '../home/home';
-import { WelcomePage } from '../welcome/welcome';
-
+import { MainPage } from '../main/main';
 /**
  * Generated class for the ProfilePage page.
  *
@@ -23,6 +22,7 @@ export class ProfilePage {
   dob: any;
   age: any;
   showProfile: boolean;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public afAuth: AngularFireAuth,) {
 
    
@@ -75,6 +75,9 @@ export class ProfilePage {
     //this.provider.loggedin = false;
     this.navCtrl.setRoot(HomePage);
    
+  }
+  goTo(){
+    this.navCtrl.setRoot(MainPage);
   }
 
 

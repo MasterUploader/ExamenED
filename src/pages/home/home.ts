@@ -1,14 +1,16 @@
 
 //importando Plugins
 
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild, ElementRef, Renderer } from '@angular/core';
+import { IonicPage, NavController, NavParams,  Searchbar } from 'ionic-angular';
 import {AngularFireAuth} from 'angularfire2/auth';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+
 
 //Importando Otras Páginas
 import { LoginPage } from '../login/login';
 import { RegisterPage } from '../register/register';
+
 
 
 /**
@@ -20,11 +22,15 @@ import { RegisterPage } from '../register/register';
 
 
 @Component({
-  selector: 'home-profile',
+  selector: 'pagehome',
   templateUrl: 'home.html',
 })
 export class HomePage {
   currentUser :any;
+  @ViewChild('searchbar', { read: ElementRef }) searchbarRef: ElementRef;
+  @ViewChild('searchbar') searchbarElement: Searchbar;
+  search: boolean    = false;
+queryText: string;
 
   constructor(
     public navCtrl: NavController, 
@@ -56,4 +62,6 @@ login(){
 register(){
   this.navCtrl.push(RegisterPage);
 }
+
+
 }

@@ -16,6 +16,11 @@ import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
 import { ProfilePage } from '../pages/profile/profile';
 import { WelcomePage } from '../pages/welcome/welcome';
+import { User } from '../../src/models/user';
+import { CardsPage } from '../pages/cards/cards';
+import { MainPage  } from '../pages/main/main';
+
+
 
 
 // AF2 Settings
@@ -36,7 +41,11 @@ export const firebaseConfig = {
     LoginPage,
     RegisterPage,
     ProfilePage,
-    WelcomePage
+    WelcomePage,
+    CardsPage,
+    MainPage
+    
+  
   ],
   imports: [
     BrowserModule,
@@ -52,7 +61,12 @@ export const firebaseConfig = {
     LoginPage,
     RegisterPage,
     ProfilePage,
-    WelcomePage
+    WelcomePage,
+    CardsPage,
+    MainPage
+    
+    
+    
   ],
   providers: [
     StatusBar,

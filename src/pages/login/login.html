@@ -13,7 +13,7 @@
 </ion-header>
 
 
-<ion-content padding LoginPage *ngIf="afAuth.authState | async as user">
+<ion-content padding LoginPage >
 
   
   
@@ -35,7 +35,7 @@
           </ion-list>
         
         <button ion-button block (click)="loginWithEmail()">Sign In</button>
-        <button ion-button block (click)="register()">Register</button>
+        
   <!--Fin del Login Con Correo y contraseña-->
 
 
@@ -65,6 +65,10 @@
           </button>
 
 
+        </div>
+        <div class="login">
+          <p>Si no tienes cuenta Registrate</p>
+            <button ion-button block (click)="register()">Register</button>
         </div>
           
        
