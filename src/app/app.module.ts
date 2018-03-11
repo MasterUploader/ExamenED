@@ -18,7 +18,7 @@ import { ProfilePage } from '../pages/profile/profile';
 import { WelcomePage } from '../pages/welcome/welcome';
 import { User } from '../../src/models/user';
 import { CardsPage } from '../pages/cards/cards';
-import { MainPage  } from '../pages/main/main';
+import { MainPage } from '../pages/main/main';
 
 
 

@@ -12,10 +12,6 @@ import * as firebase from 'firebase/app';
 import { Observable } from '@firebase/util';
 
 
-
-
-
-
 /**
  * Generated class for the CardsPage page.
  *
@@ -32,6 +28,8 @@ export class CardsPage {
   currentUser:any;
   cardsRef:any;
   cards: AngularFireList<any>;
+  coments: AngularFireList<any>;
+  comentsRef:any;
  
   constructor(
     public navCtrl: NavController, 
@@ -42,6 +40,9 @@ export class CardsPage {
   ) {
     this.cardsRef = afDatabase.list('Cards');
     this.cards = this.cardsRef.valueChanges();
+    this.comentsRef = afDatabase.list('Coments');
+    this.coments = this.comentsRef.valueChanges();
+
   
     afAuth.authState.subscribe(user => {
       if (!user) {
@@ -116,6 +117,15 @@ export class CardsPage {
             this.removeCard(cardId,cardUID);
           }
         },{
+          text: 'Agregar Comentario',
+          handler: () => {
+            this.addComent(cardId, cardUID);
+          }
+
+
+        },
+        
+        {
           text: 'Actualizar Nombre',
           handler: () => {
             this.updateCard(cardId, cardTitle, cardSubTitle, cardUID);
@@ -197,12 +207,99 @@ export class CardsPage {
 
     }
 
-    }
+  }
     
 
   //Finaliza Metodo updateCard
+
+    //Medtodo actualizar Comentario
   
+  actualizarComentario(cardId, CardTitle, cardSubTitle, cardUID){
+    
+      let prompt = this.alertCtrl.create({
+        title: 'Comentario',
+        message: "Comenta",
+        inputs: [
+          {
+            name: 'title',
+            placeholder: 'Comentario',
+            
+          }
+        ],
+        buttons: [
+          {
+            text: 'Cancelar',
+            handler: data => {
+              console.log('Click para Cancelar');
+            }
+          },
+          {
+            text: 'Guardar',
+            handler: data => {
+              this.cardsRef.update(cardId, {
+                comentario: data.title,  lastUpdatedBy: this.currentUser.uid
+              });
+            }
+          }
+        ]
+      });
+      prompt.present();
+    
+      
+
+    
+
+  }
+
+  //Metodo Actualizar Comentario
+
+//Metodo Agregar tarjeta
+addComent(cardId, cardUID){
+  let prompt = this.alertCtrl.create({
+    title: 'Comentaio',
+    message: "Comenta",
   
 
+    
+    
+    inputs: [
+      {
+        name: 'title',
+        placeholder: 'Comentario'
+      },
+      
+    ],
+    buttons: [
+      {
+        text: 'Cancel',
+        handler: data => {
+          console.log('Cancel clicked');
+        }
+      },
+      {
+        text: 'Save',
+        handler: data => {
+          const newComentRef = this.comentsRef.push({});
+          const newCardRef =this.comentsRef.push({});
 
+           newComentRef.set({
+            idC:newComentRef.key,
+            comentario: data.title,
+            nombreC: this.currentUser.nombre,
+            photoC: this.currentUser.photoURL,
+            uidC: this.currentUser.uid,
+            id: cardId,
+          });
+          {
+
+          }
+
+          
+        }
+      }
+    ]
+  });
+  prompt.present();
 }
+}
+//Fin metodo Agregar Tarjeta

@@ -27,6 +27,40 @@
                   
                 <h1>{{card.nombre}}</h1><h4>Autor</h4>
                 <h2>Titulo: {{card.title}}</h2>>> <p>==>{{card.subTitle}}</p>
+                <h3>{{card.comentario}}</h3>
+                
+                
+
+                <ion-fab right bottom>
+                    <button ion-fab  (click)="addCard()">
+                    <ion-icon name="add" ></ion-icon>
+                    </button>
+                    </ion-fab>
+
+                    <!-- Comentarios -->
+                <ion-content>
+                    <ion-list>
+                        <ion-item>
+                          <ion-card-content *ngFor="let coment of coments | async"  >
+                              <ion-avatar item-start>
+                                  <img src={{coment.photoC}} >
+                    
+                              </ion-avatar>
+                    
+                                
+                              <h1>{{coment.nombreC}}</h1><h4>Autor</h4>
+                               <p>==>{{coment.title}}</p>
+      
+                          </ion-card-content>
+                        </ion-item>
+                       
+                      </ion-list>
+
+                </ion-content>
+
+                
+                <!-- Comentarios -->
+                      
                 
               </ion-card-content>
 
@@ -39,12 +73,7 @@
 
        
             
-            <ion-fab right bottom>
-            <button ion-fab  (click)="addCard()">
-            <ion-icon name="add" ></ion-icon>
-            </button>
-            </ion-fab>
-              <div class="exit"><button ion-button round color="orange" full (click)="addCard()"  small>Logout</button></div>
+      <div class  ="exit"><button ion-button round color="orange" full (click)="addComent()"  small>Logout</button></div>
        
       
       </ion-card>
