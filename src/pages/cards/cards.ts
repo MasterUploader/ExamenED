@@ -12,6 +12,7 @@ import * as firebase from 'firebase/app';
 import { Observable } from '@firebase/util';
 
 
+
 /**
  * Generated class for the CardsPage page.
  *
@@ -37,11 +38,14 @@ export class CardsPage {
     public actionSheetCtrl: ActionSheetController,
     public afDatabase: AngularFireDatabase,
     public afAuth: AngularFireAuth,
+    
   ) {
     this.cardsRef = afDatabase.list('Cards');
     this.cards = this.cardsRef.valueChanges();
     this.comentsRef = afDatabase.list('Coments');
     this.coments = this.comentsRef.valueChanges();
+    
+    
 
   
     afAuth.authState.subscribe(user => {
@@ -298,5 +302,10 @@ addComent(cardId, cardUID){
   });
   prompt.present();
 }
-}
+
 //Fin metodo Agregar Tarjeta
+
+
+
+}
+

@@ -6,6 +6,7 @@ import { User } from '../../models/user';
 import { AngularFireAuth } from "angularfire2/auth";
 
 
+
 /**
  * Generated class for the RegisterPage page.
  *
@@ -19,6 +20,7 @@ import { AngularFireAuth } from "angularfire2/auth";
   templateUrl: 'register.html',
 })
 export class RegisterPage {
+  
   user = {} as User;
   imageURI:any;
   imageFileName:any;
@@ -26,6 +28,7 @@ export class RegisterPage {
   constructor(
     private afAuth: AngularFireAuth,
     public navCtrl: NavController, 
+  
     public navParams: NavParams) {
   }
 
@@ -40,5 +43,6 @@ export class RegisterPage {
     }
   }
 
-  
+
 }
+

@@ -21,7 +21,7 @@
           <div align="center" *ngIf="formCtrl.form.valid">
               
             <h1> Profile</h1>
-            <img class="profile-image" src="{{currentUser.photoURL}}">
+            <img  src={{currentUser.photoURL}} >
               <h4>{{person.name}}, {{person.company}}</h4>
               <h5>{{age}} años</h5>
           </div>
@@ -41,6 +41,7 @@
               <ion-label >Cumpleaños</ion-label>
               <ion-datetime required name="birthdate" displayFormat="DD MMM YYYY" pickerFormat="DD MMM YYYY" [(ngModel)]="dob" [ngModelOptions]="{standalone:true}"></ion-datetime>
           </ion-item>
+          
           
       </ion-list>
       <button color="secondary" [disabled]="!formCtrl.form.valid" ion-button block (click)="save()">Save</button>

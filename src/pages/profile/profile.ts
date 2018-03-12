@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {AngularFireAuth} from 'angularfire2/auth';
 import { HomePage } from '../home/home';
-
+import * as firebase from 'firebase/app';
 /**
  * Generated class for the ProfilePage page.
  *
@@ -61,9 +61,11 @@ export class ProfilePage {
 
   save(){
     this.person.birthdate = new Date(this.dob).getTime();
+    this.person.company = this.person.company;
     this.age = this.getAge(this.person.birthdate);
     this.showProfile = true;
-    localStorage.setItem('PERSON', JSON.stringify(this.person));
+    localStorage.setItem('PERSON', JSON.stringify(this.person, this.age));
+    
   }
 
   getAge(birthdate){
