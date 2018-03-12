@@ -9,7 +9,7 @@ import { Observable } from '@firebase/util';
 import {HomePage} from '../home/home'
 import {RegisterPage} from '../register/register'; //Página de Registro
 import { MainPage } from '../main/main';
-
+import { Storage } from '@ionic/storage';
 
 
 
@@ -46,7 +46,8 @@ export class LoginPage {
     public navParams: NavParams,
     public afDatabase: AngularFireDatabase,
     public afAuth: AngularFireAuth,
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+    public storage: Storage
   ) {
     afAuth.authState.subscribe(user => {
       if (!user) {
@@ -56,6 +57,8 @@ export class LoginPage {
       this.currentUser = {uid:user.uid, photoURL: user.photoURL};
       
     });
+
+  
     
   }
   ionViewDidLoad() {
@@ -71,7 +74,9 @@ loginWithEmail(){
   		this.provider.email = response.email;
   		this.provider.profilePicture = response.photoURL;
   		console.log('from Email', response);
-  		this.showAlert('Success! you\'re logged in by Email');
+      this.showAlert('Success! you\'re logged in by Email');
+      this.storage.set('statelogin', 'true');
+      this.storage.set('providers',this.provider);
     	this.navCtrl.setRoot(MainPage, this.provider);
   	})
   	.catch( error => {
@@ -113,6 +118,9 @@ loginWithGmail(){
   		this.provider.profilePicture = response.user.photoURL;
   		console.log('from Google',response);
   		this.showAlert('Success! you\'re logged in by Google');
+      this.storage.set('statelogin', 'true');
+      this.storage.set('providers',this.provider);
+      
       this.navCtrl.setRoot(MainPage, this.provider);
       
      console.log('resultado login google:', response);
@@ -174,7 +182,9 @@ loginWithGithub(){
   		this.provider.email = response.user.email;
   		this.provider.profilePicture = response.user.photoURL;
   		console.log('from Github',response);
-  		this.showAlert('Success! you\'re logged in by Github');
+      this.showAlert('Success! you\'re logged in by Github');
+      this.storage.set('statelogin', 'true');
+      this.storage.set('providers',this.provider);
       this.navCtrl.setRoot(MainPage, this.provider);
       console.log('resultado login google:', response);
     
@@ -205,6 +215,8 @@ loginWithTwitter() {
     this.provider.profilePicture = response.user.photoURL;
     console.log('from Twitter',response);
     this.showAlert('Success! you\'re logged in by Twitter');
+    this.storage.set('statelogin', 'true');
+      this.storage.set('providers',this.provider);
     this.navCtrl.setRoot(MainPage, this.provider);
     console.log('resultado login google:', response);
     
@@ -228,6 +240,10 @@ loginWithTwitter() {
 get Session(){
   return this.afAuth.authState;
  }
+
+
+
+
 
 
 }

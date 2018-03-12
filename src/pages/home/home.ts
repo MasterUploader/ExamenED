@@ -5,11 +5,14 @@ import { Component, ViewChild, ElementRef, Renderer } from '@angular/core';
 import { IonicPage, NavController, NavParams,  Searchbar } from 'ionic-angular';
 import {AngularFireAuth} from 'angularfire2/auth';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+import { Storage } from '@ionic/storage';
 
 
 //Importando Otras Páginas
 import { LoginPage } from '../login/login';
 import { RegisterPage } from '../register/register';
+import { MainPage } from '../main/main';
+
 
 
 
@@ -37,6 +40,7 @@ queryText: string;
     public navParams: NavParams,
     public afDatabase: AngularFireDatabase,
     public afAuth: AngularFireAuth,
+    public storage:Storage
   ) {
     afAuth.authState.subscribe(user => {
       if (!user) {
@@ -46,6 +50,16 @@ queryText: string;
       this.currentUser = {uid:user.uid, photoURL: user.photoURL};
       
     });
+
+    if(this.storage.get('statelogin')){
+      this.storage.get('statelogin').then(val =>{
+        if(val== 'true')
+        this.storage.get('provider').then(val =>{
+          this.navCtrl.setRoot(MainPage, val)
+        })
+        
+      });
+    }
   }
 
   ionViewDidLoad() {

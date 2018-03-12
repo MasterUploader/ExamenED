@@ -4,6 +4,7 @@ import { Component, ViewChild, ElementRef, Renderer } from '@angular/core';
 import { IonicPage, NavController, NavParams,  Searchbar, ModalController, Platform, ViewController } from 'ionic-angular';
 import {AngularFireAuth} from 'angularfire2/auth';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+import { Storage } from '@ionic/storage';
 
 
 
@@ -31,13 +32,16 @@ export class MainPage {
   @ViewChild('searchbar', { read: ElementRef }) searchbarRef: ElementRef;
   @ViewChild('searchbar') searchbarElement: Searchbar;
   search: boolean    = false;
+  authen: any;
+  x:boolean =false;
  queryText: string;
 
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
     public afDatabase: AngularFireDatabase,
-    public afAuth: AngularFireAuth,) {
+    public afAuth: AngularFireAuth,
+    public storage: Storage) {
 
       afAuth.authState.subscribe(user => {
         if (!user) {
@@ -48,12 +52,18 @@ export class MainPage {
         
       });
 
+      this.storage.get('at').then(val =>{
+        this.authen =val;
+        this.x =true;
+      })
+
       
   }
 
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MainPage');
+    this.storage.get('state.login')
   }
 
   toggleSearch() {
@@ -70,6 +80,7 @@ export class MainPage {
     //implement search
   }
   logout(){
+    this.storage.set('statelogin', null);
     this.afAuth.auth.signOut();
     //this.provider.loggedin = false;
     this.navCtrl.setRoot(HomePage);

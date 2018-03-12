@@ -31,7 +31,7 @@
 
 <ion-content padding *ngIf="afAuth.authState | async as user">
 <!-- El div que engloba todo -->
-  <div>
+  <div class="container">
     <!-- busqueda-->
     <ion-searchbar #searchbar placeholder="o que deseja?" [hidden]="!search" (ionInput)="searchAction($event)" [(ngModel)]="queryText"></ion-searchbar>  
  

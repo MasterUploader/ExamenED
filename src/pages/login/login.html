@@ -4,79 +4,94 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header>
+<ion-header >
 
-  <ion-navbar>
+  <ion-navbar >
     <ion-title>Login</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding LoginPage >
+<ion-content padding LoginPage class="fondo" >
 
   
-  
- <!-- Inicio Login con Plataformas-->
+  <div >
+
+    <!-- Inicio Login con Plataformas-->
             
+    
+    <div class="container" >
         <h1>Logueate de la Forma Clasica</h1>
-        <div class="login">
-          <!--Login Con Correo y Contraseña-->
-          <ion-list>
-              <ion-item>
-                <ion-label floating>Email</ion-label>
-                <ion-input type="text" #email></ion-input>
-              </ion-item>
-          
-              <ion-item>
-                <ion-label floating>Password</ion-label>
-                <ion-input type="password" #password></ion-input>
-              </ion-item>
-          </ion-list>
-        
-        <button ion-button block (click)="loginWithEmail()">Sign In</button>
-        
-  <!--Fin del Login Con Correo y contraseña-->
-
-
-        </div>
-        <div class="caja1"  >
-          <h1>O Logueate de la Forma Moderna</h1>
-          <!--Gmail-->
-          
-          <button ion-button round color="danger"  full (click)="loginWithGmail()" icon-right *ngIf="!provider.loggedin">
-              <ion-icon name="logo-googleplus"></ion-icon>
-              Login with Google
-            </button>
-
-
-      <!--Facebook -->
-    
-        <button ion-button round color="default"  full (click)="loginWithFacebook()"  icon-right *ngIf="!provider.loggedin">
-            <ion-icon name="logo-facebook"></ion-icon>
-            Login with Facebook
-          </button>
-
-    <!--Github-->
-    
-        <button ion-button round color="dark"  full (click)="loginWithGithub()" icon-right *ngIf="!provider.loggedin">
-            <ion-icon name="logo-github"></ion-icon>
-            Login with Github
-          </button>
-
-
-        </div>
-        <div class="login">
-          <p>Si no tienes cuenta Registrate</p>
-            <button ion-button block (click)="register()">Register</button>
-        </div>
-          
-       
-
-        
+      <!--Login Con Correo y Contraseña-->
+      <ion-list>
+          <ion-item>
+            <ion-label floating>Email</ion-label>
+            <ion-input type="text" #email></ion-input>
+          </ion-item>
       
-  <!--Fin Login con Plataformas--> 
+          <ion-item class="cajaOp">
+            <ion-label floating>Password</ion-label>
+            <ion-input type="password" #password></ion-input>
+          </ion-item>
+      </ion-list>
+    
+    <button ion-button block  round color="grey" (click)="loginWithEmail()">Sign In</button>
+    
+    <!--Fin del Login Con Correo y contraseña-->
+   
 
+
+
+
+    <div class="container1" >
+        <h1>O Logueate de la Forma Moderna</h1>
+        <!--Gmail-->
+        
+        <button ion-button round block color="danger"  full (click)="loginWithGmail()" icon-right *ngIf="!provider.loggedin">
+            <ion-icon name="logo-googleplus"></ion-icon>
+            Login with Google
+          </button>
+  
+  
+    <!--Facebook -->
+  
+      <button ion-button round block color="default"  full (click)="loginWithFacebook()"  icon-right *ngIf="!provider.loggedin">
+          <ion-icon name="logo-facebook"></ion-icon>
+          Login with Facebook
+        </button>
+  
+  <!--Github-->
+  
+      <button ion-button round block color="dark"  full (click)="loginWithGithub()" icon-right *ngIf="!provider.loggedin">
+          <ion-icon name="logo-github"></ion-icon>
+          Login with Github
+        </button>
+        
+            
+  
+  
+      </div>
+     
+     
+  
+      <p>Si no tienes cuenta Registrate</p>
+        <button ion-button block round (click)="register()" icon-right color="orange">Register</button>
+    
+
+
+
+
+    </div>
+    
+  
+<!--Fin Login con Plataformas--> 
+
+
+
+  </div>
+
+ 
  
                  
              

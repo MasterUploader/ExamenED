@@ -13,6 +13,7 @@ import { Observable } from '@firebase/util';
 
 
 
+
 /**
  * Generated class for the CardsPage page.
  *
@@ -29,6 +30,8 @@ export class CardsPage {
   currentUser:any;
   cardsRef:any;
   cards: AngularFireList<any>;
+  
+  
   coments: AngularFireList<any>;
   comentsRef:any;
  
@@ -38,13 +41,13 @@ export class CardsPage {
     public actionSheetCtrl: ActionSheetController,
     public afDatabase: AngularFireDatabase,
     public afAuth: AngularFireAuth,
+   
     
   ) {
     this.cardsRef = afDatabase.list('Cards');
     this.cards = this.cardsRef.valueChanges();
     this.comentsRef = afDatabase.list('Coments');
     this.coments = this.comentsRef.valueChanges();
-    
     
 
   
@@ -110,7 +113,12 @@ export class CardsPage {
 
   //Inicia Metodo ShowOptions
 
-  showOptions(cardId, cardTitle, cardSubTitle, cardUID) {
+  showOptions(cardId :string, cardTitle: string, cardSubTitle: string, cardUID: string) {
+
+    console.log(cardId);
+    console.log(cardTitle);
+    console.log(cardSubTitle);
+    console.log(cardUID);
     let actionSheet = this.actionSheetCtrl.create({
       title: '¿Que quieres hacer?',
       buttons: [
@@ -150,15 +158,20 @@ export class CardsPage {
   //Inicia Metodo removeCard
 
   removeCard(cardId: string, cardIdUser: string){
-    if(this.currentUser.uid == cardIdUser ){
+    
+    if(this.currentUser.uid == cardIdUser){
+      
       this.cardsRef.remove(cardId);
 
     }else{
-      let alert = this.alertCtrl.create({
+      
+     let alert = this.alertCtrl.create({
         title: '¡¡¡UUUPPPSSS!!!',
         subTitle: 'No estas autorizado para eliminar la tarjeta',
-        buttons: ['OK']
+        
+        buttons: ['ok']
       });
+      
       alert.present();
     
     }
@@ -257,55 +270,53 @@ export class CardsPage {
 
   //Metodo Actualizar Comentario
 
-//Metodo Agregar tarjeta
-addComent(cardId, cardUID){
-  let prompt = this.alertCtrl.create({
-    title: 'Comentaio',
-    message: "Comenta",
-
-    inputs: [
-      {
-        name: 'title',
-        placeholder: 'Comentario'
-      },
-      
-    ],
-    buttons: [
-      {
-        text: 'Cancel',
-        handler: data => {
-          console.log('Cancel clicked');
-        }
-      },
-      {
-        text: 'Save',
-        handler: data => {
-          const newComentRef = this.comentsRef.push({});
-          const newCardRef =this.comentsRef.push({});
-
-           newComentRef.set({
-            idC:newComentRef.key,
-            comentario: data.title,
-            nombreC: this.currentUser.nombre,
-            photoC: this.currentUser.photoURL,
-            uidC: this.currentUser.uid,
-            id: cardId,
-          });
-          {
-
+  addComent(cardId, cardUID){
+    let prompt = this.alertCtrl.create({
+      title: 'Comentaio',
+      message: "Comenta",
+  
+      inputs: [
+        {
+          name: 'title',
+          placeholder: 'Comentario'
+        },
+        
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: data => {
+            console.log('Cancel clicked');
           }
-
-          
+        },
+        {
+          text: 'Save',
+          handler: data => {
+            const newComentRef = this.comentsRef.push({});
+            const newCardRef =this.comentsRef.push({});
+  
+             newComentRef.set({
+              idC:newComentRef.key,
+              comentario: data.title,
+              nombreC: this.currentUser.nombre,
+              photoC: this.currentUser.photoURL,
+              uidC: this.currentUser.uid,
+              id: cardId,
+            });
+            {
+  
+            }
+  
+            
+          }
         }
-      }
-    ]
-  });
-  prompt.present();
-}
-
-//Fin metodo Agregar Tarjeta
+      ]
+    });
+    prompt.present();
+  }
 
 
+ 
 
 }
 

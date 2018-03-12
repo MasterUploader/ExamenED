@@ -1,21 +1,42 @@
 page-login {
+    
+    .fondo{
+        background: #50a3a2;
+        background: -webkit-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
+        background: -moz-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
+        background: -o-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
+        background: linear-gradient(to bottom right, #50a3a2 0%, #53e3a6 100%);
+
+    }
+
+    .cajaP {
+        width: 50%;
+        height: 60%;
+        ;
+        
+    }
+
+   
+       
+        
+
+    .container{
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 80px 0;
+        height: 400px;
+        text-align: center;
+        
+    }
+    .cajaOp{
+        margin: 0 auto;
+       
+    }
+    .container1{
+        max-width: 600px;
+        padding: 40px 0;
+        text-align: center;
+        
+    }
 
 }
-.login {
-    width: 50%;
-    //margin: 50px auto;
-    //background-color: #F3EDED;
-   // border: 1px solid #ECE8E8;
-    height: 50%;
-    //border-radius:8px;
-   // padding: 0px 9px 0px 9px;
-  // float: right;
-
-}
-.caja1{
-    //float: left;
-    width: 50%;
-    height: 50%;
- 
-}
-

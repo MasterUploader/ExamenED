@@ -13,50 +13,60 @@
 </ion-header>
 
 <ion-content class="cards-bg">
-
-    <div *ngIf="afAuth.authState | async as user; ">
-    <ion-card>
-      <ion-list>
-        <ion-item>
-          <h1>Publicaciones</h1>
-            <ion-card-content *ngFor="let card of cards | async" (click)="showOptions(card.id, card.title, card.subTittle, card.idUser)">
-                <ion-avatar item-start>
-                    <img src={{card.photo}} >
-                </ion-avatar>
-
-                <h3>{{card.nombre}}</h3><h4>Autor de la Tarjeta</h4>
-                <h2>Titulo: {{card.title}}</h2>>> <p>==>{{card.subTitle}}</p>
-                <ion-card>
-                  <ion-list>
-                    <ion-item>
-                      <h1>Comentarios</h1>
-                      <ion-card-content *ngFor="let coment of coments | async">
-                          <ion-avatar item-start>
-                              <img src={{coment.photoC}} >
-                          </ion-avatar>
-                          <h2>{{coment.nombreC}}</h2><h4>Autor del Comentario</h4>
-                        <h3>{{coment.comentario}}</h3>
-
-                      </ion-card-content>
-                    </ion-item>
-                  </ion-list>
-                </ion-card>
-              </ion-card-content>
-        </ion-item>
-      </ion-list>
+  <ion-list>
+      <div *ngIf="afAuth.authState | async as user; ">
+          <ion-card>
+            <ion-list>
+              <ion-item>
+                <h1>Publicaciones</h1>
+                  <ion-card-content *ngFor="let card of cards | async" (click)="showOptions(card.id, card.title, card.subTittle, card.uid)">
+                      <ion-avatar item-start>
+                          <img src={{card.photo}} >
+                      </ion-avatar>
       
+                      <h3>{{card.nombre}}</h3><h4>Autor de la Tarjeta</h4>
+                      <h2>Titulo: {{card.title}}</h2>>> <p>==>{{card.subTitle}}</p>
+
+                      <ion-card>
+                          <ion-list>
+                            <ion-item>
+                              <h1>Comentarios</h1>
+                              <ion-card-content *ngFor="let coment of coments | async">
+                                  <ion-avatar item-start>
+                                      <img src={{coment.photoC}} >
+                                  </ion-avatar>
+                                  <h2>{{coment.nombreC}}</h2><h4>Autor del Comentario</h4>
+                                <h3>{{coment.comentario}}</h3>
+        
+                              </ion-card-content>
+                            </ion-item>
+                          </ion-list>
+        </ion-card>
       
-      </ion-card>
-      <ion-fab right bottom>
-        <button ion-fab  (click)="addCard()">
-        <ion-icon name="add" ></ion-icon>
-        </button>
-        </ion-fab>
+                     
+                      
+                    </ion-card-content>
+              </ion-item>
+            </ion-list>
+            
+            
+            </ion-card>
+      
+           
+          
+      
+            
+              
+      </div>
+
+  </ion-list>
+  <ion-fab right bottom>
+      <button ion-fab  (click)="addCard()">
+      <ion-icon name="add" ></ion-icon>
+      </button>
+      </ion-fab>
+
 
     
-
-      
-        
-</div>
      
 </ion-content>
