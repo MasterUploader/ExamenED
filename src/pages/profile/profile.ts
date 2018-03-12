@@ -3,6 +3,10 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {AngularFireAuth} from 'angularfire2/auth';
 import { HomePage } from '../home/home';
 import * as firebase from 'firebase/app';
+import { extend } from '@firebase/util';
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+import { AlertController } from 'ionic-angular';
+
 /**
  * Generated class for the ProfilePage page.
  *
@@ -16,16 +20,22 @@ import * as firebase from 'firebase/app';
   templateUrl: 'profile.html',
   
 })
-export class ProfilePage {
+export class ProfilePage  {
   currentUser: any;
   public person: {name: string, company: string, birthdate?: number};
   dob: any;
   age: any;
   showProfile: boolean;
+  
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public afAuth: AngularFireAuth,) {
-
-   
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams, 
+    public afAuth: AngularFireAuth,
+    public afDatabase: AngularFireDatabase,
+    public alertCtrl: AlertController,
+    
+  ) {
 
     this.person = {name: undefined, company: undefined, birthdate: undefined};
     this.dob = undefined;

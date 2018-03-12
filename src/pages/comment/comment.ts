@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController  } from 'ionic-angular';
+import { CardsPage as cp } from '../cards/cards';
 
 /**
  * Generated class for the CommentPage page.
@@ -15,11 +16,67 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class CommentPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  comentsRef: any;
+  
+
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    public alertCtrl: AlertController,
+    public cp : cp,
+  
+  ) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CommentPage');
   }
+  //Metodo Comentar
+addComent(cardId, cardUID){
+  let prompt = this.alertCtrl.create({
+    title: 'Comentaio',
+    message: "Comenta",
+
+    inputs: [
+      {
+        name: 'title',
+        placeholder: 'Comentario'
+      },
+      
+    ],
+    buttons: [
+      {
+        text: 'Cancel',
+        handler: data => {
+          console.log('Cancel clicked');
+        }
+      },
+      {
+        text: 'Save',
+        handler: data => {
+          const newComentRef = this.comentsRef.push({});
+          const newCardRef =this.comentsRef.push({});
+
+           newComentRef.set({
+            idC:newComentRef.key,
+            comentario: data.title,
+            nombreC: this.currentUser.nombre,
+            photoC: this.currentUser.photoURL,
+            uidC: this.currentUser.uid,
+            id: cardId,
+          });
+          {
+
+          }
+
+          
+        }
+      }
+    ]
+  });
+  prompt.present();
+}
+
+//Fin metodo Comentar
 
 }
