@@ -8,7 +8,7 @@ import { Observable } from '@firebase/util';
 
 import {HomePage} from '../home/home'
 import {RegisterPage} from '../register/register'; //Página de Registro
-import { ProfilePage } from '../profile/profile';
+import { MainPage } from '../main/main';
 
 
 
@@ -72,7 +72,7 @@ loginWithEmail(){
   		this.provider.profilePicture = response.photoURL;
   		console.log('from Email', response);
   		this.showAlert('Success! you\'re logged in by Email');
-    	this.navCtrl.setRoot(ProfilePage, this.provider);
+    	this.navCtrl.setRoot(MainPage, this.provider);
   	})
   	.catch( error => {
   		console.log('got error',error);
@@ -113,7 +113,7 @@ loginWithGmail(){
   		this.provider.profilePicture = response.user.photoURL;
   		console.log('from Google',response);
   		this.showAlert('Success! you\'re logged in by Google');
-      this.navCtrl.setRoot(ProfilePage, this.provider);
+      this.navCtrl.setRoot(MainPage, this.provider);
       
      console.log('resultado login google:', response);
     
@@ -145,7 +145,7 @@ loginWithFacebook(){
   		this.provider.profilePicture = response.user.photoURL;
   		console.log('from Facebook', response);
   		this.showAlert('Success! you\'re logged in by Facebook');
-      this.navCtrl.setRoot(ProfilePage, this.provider);
+      this.navCtrl.setRoot(MainPage, this.provider);
       console.log('resultado login google:', response);
     
     const userRef = this.afDatabase.list('users');
@@ -175,7 +175,7 @@ loginWithGithub(){
   		this.provider.profilePicture = response.user.photoURL;
   		console.log('from Github',response);
   		this.showAlert('Success! you\'re logged in by Github');
-      this.navCtrl.setRoot(ProfilePage, this.provider);
+      this.navCtrl.setRoot(MainPage, this.provider);
       console.log('resultado login google:', response);
     
     const userRef = this.afDatabase.list('users');
@@ -205,7 +205,7 @@ loginWithTwitter() {
     this.provider.profilePicture = response.user.photoURL;
     console.log('from Twitter',response);
     this.showAlert('Success! you\'re logged in by Twitter');
-    this.navCtrl.setRoot(ProfilePage, this.provider);
+    this.navCtrl.setRoot(MainPage, this.provider);
     console.log('resultado login google:', response);
     
     const userRef = this.afDatabase.list('users');

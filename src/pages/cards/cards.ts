@@ -66,7 +66,7 @@ export class CardsPage {
       inputs: [
         {
           name: 'title',
-          placeholder: 'Title'
+          placeholder: 'Title',
         },
         {
           name: 'subTitle',
@@ -258,10 +258,7 @@ addComent(cardId, cardUID){
   let prompt = this.alertCtrl.create({
     title: 'Comentaio',
     message: "Comenta",
-  
 
-    
-    
     inputs: [
       {
         name: 'title',

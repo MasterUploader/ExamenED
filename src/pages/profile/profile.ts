@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {AngularFireAuth} from 'angularfire2/auth';
 import { HomePage } from '../home/home';
-import { MainPage } from '../main/main';
+
 /**
  * Generated class for the ProfilePage page.
  *
@@ -76,9 +76,7 @@ export class ProfilePage {
     this.navCtrl.setRoot(HomePage);
    
   }
-  goTo(){
-    this.navCtrl.setRoot(MainPage);
-  }
+
 
 
 }

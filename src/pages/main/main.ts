@@ -10,6 +10,7 @@ import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 //Importando Otras Páginas
 import { HomePage } from '../home/home';
 import { CardsPage } from '../cards/cards';
+import { ProfilePage } from '../profile/profile';
 
 
 /**
@@ -75,6 +76,9 @@ export class MainPage {
   }
   goTo(){
     this.navCtrl.push(CardsPage);
+  }
+  goToP(){
+    this.navCtrl.push(ProfilePage);
   }
 }
 
