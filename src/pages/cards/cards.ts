@@ -4,7 +4,8 @@ import { IonicPage,
   NavParams, 
   Platform, 
   AlertController, 
-  ActionSheetController   } from 'ionic-angular';
+  ActionSheetController,   
+  PopoverController} from 'ionic-angular';
 
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { AngularFireAuth} from 'angularfire2/auth';
@@ -15,6 +16,9 @@ import {
   FormControl
 
 } from '@angular/forms';
+
+//Importación de Páginas
+import { ReactionsPage } from '../reactions/reactions';
 
 
 
@@ -55,9 +59,12 @@ export class CardsPage {
     public actionSheetCtrl: ActionSheetController,
     public afDatabase: AngularFireDatabase,
     public afAuth: AngularFireAuth,
+    private popoverCtrl: PopoverController
    
     
   ) {
+     // THIS IS JUST FOR TESTING
+     window.addEventListener("contextmenu", (e) => { e.preventDefault(); });
     this.cardsRef = afDatabase.list('Cards');
     this.cards = this.cardsRef.valueChanges();
     this.comentsRef = afDatabase.list('Coments');
@@ -356,6 +363,19 @@ export class CardsPage {
   doSubmit(event) {
     console.log('Submitting form', this.langForm.value);
     event.preventDefault();
+}
+showReactions(ev){
+ 
+  let reactions = this.popoverCtrl.create(ReactionsPage);
+
+  reactions.present({
+      ev: ev
+  });
+
+}
+
+like(){
+  console.log("like");
 }
 
 

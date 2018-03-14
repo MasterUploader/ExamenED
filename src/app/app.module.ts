@@ -21,6 +21,7 @@ import { User } from '../../src/models/user';
 import { CardsPage } from '../pages/cards/cards';
 import { MainPage } from '../pages/main/main';
 import { SearchPage } from '../pages/search/search';
+import { ReactionsPage } from '../pages/reactions/reactions';
 
 
 
@@ -46,7 +47,8 @@ export const firebaseConfig = {
     WelcomePage,
     CardsPage,
     MainPage,
-    SearchPage
+    SearchPage,
+    ReactionsPage
     
   
   ],
@@ -68,7 +70,8 @@ export const firebaseConfig = {
     WelcomePage,
     CardsPage,
     MainPage,
-    SearchPage
+    SearchPage,
+    ReactionsPage
     
     
     

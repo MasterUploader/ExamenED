@@ -26,8 +26,9 @@
       
                       <h3>{{card.nombre}}</h3><h4>Autor de la Tarjeta</h4>
                       <h2>Titulo: {{card.title}}</h2>>> <p>==>{{card.subTitle}}</p>
-                      <!--- Likes-->
 
+                      <!--- Likes-->
+<!--
                       <ion-item-group>
                           <ion-item >
                         
@@ -42,13 +43,19 @@
 
 
                       </ion-item-group>
-                      
-                     
-                          
-    
 
-                          
-                        
+                    -->
+
+                    <ion-content>
+
+                        <ion-fab right bottom>
+                            <button ion-fab (click)="like()" (click)="showReactions($event)" clear small>
+                                <ion-icon name="add" ></ion-icon>
+                            </button>
+                
+                        </ion-fab>
+                
+                        </ion-content>
                       
                    
                        <!--- Likes-->
@@ -88,12 +95,18 @@
               
       </div>
 
+
+
   </ion-list>
+
+
   <ion-fab right bottom>
       <button ion-fab  (click)="addCard()">
       <ion-icon name="add" ></ion-icon>
       </button>
       </ion-fab>
+
+      
 
       
 
