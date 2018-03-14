@@ -12,6 +12,7 @@ import { Storage } from '@ionic/storage';
 import { HomePage } from '../home/home';
 import { CardsPage } from '../cards/cards';
 import { ProfilePage } from '../profile/profile';
+import { SearchPage } from '../search/search';
 
 
 /**
@@ -31,10 +32,12 @@ export class MainPage {
   currentUser :any;
   @ViewChild('searchbar', { read: ElementRef }) searchbarRef: ElementRef;
   @ViewChild('searchbar') searchbarElement: Searchbar;
-  search: boolean    = false;
+  
   authen: any;
   x:boolean =false;
  queryText: string;
+ searchQuery: string = '';
+ items: string[];
 
   constructor(
     public navCtrl: NavController, 
@@ -42,6 +45,7 @@ export class MainPage {
     public afDatabase: AngularFireDatabase,
     public afAuth: AngularFireAuth,
     public storage: Storage) {
+      
 
       afAuth.authState.subscribe(user => {
         if (!user) {
@@ -58,6 +62,8 @@ export class MainPage {
       })
 
       
+
+      
   }
 
 
@@ -66,14 +72,7 @@ export class MainPage {
     this.storage.get('state.login')
   }
 
-  toggleSearch() {
-    if (this.search) {
-      this.search = false;
-    } else {
-      this.search = true;
-      this.searchbarElement.setFocus();
-    }
-  }
+  
   
   searchAction(texto: any) {
     let val = texto.target.value;
@@ -90,6 +89,12 @@ export class MainPage {
   }
   goToP(){
     this.navCtrl.push(ProfilePage);
+  }
+
+  search(){
+
+    this.navCtrl.push(SearchPage);
+
   }
 }
 

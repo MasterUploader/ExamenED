@@ -20,6 +20,7 @@ import { WelcomePage } from '../pages/welcome/welcome';
 import { User } from '../../src/models/user';
 import { CardsPage } from '../pages/cards/cards';
 import { MainPage } from '../pages/main/main';
+import { SearchPage } from '../pages/search/search';
 
 
 
@@ -44,7 +45,8 @@ export const firebaseConfig = {
     ProfilePage,
     WelcomePage,
     CardsPage,
-    MainPage
+    MainPage,
+    SearchPage
     
   
   ],
@@ -65,7 +67,8 @@ export const firebaseConfig = {
     ProfilePage,
     WelcomePage,
     CardsPage,
-    MainPage
+    MainPage,
+    SearchPage
     
     
     

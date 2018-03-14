@@ -27,23 +27,36 @@
                       <h3>{{card.nombre}}</h3><h4>Autor de la Tarjeta</h4>
                       <h2>Titulo: {{card.title}}</h2>>> <p>==>{{card.subTitle}}</p>
                       <!--- Likes-->
-                      <ion-item>
-                          <ion-label>Like</ion-label>
-                          <ion-checkbox #like color="dark" checked="false" ></ion-checkbox>
-                        </ion-item>
-                        
-                        <ion-item>
-                          <ion-label>DisLikes</ion-label>
-                          <ion-checkbox #dislike checked="false"  ></ion-checkbox>
-                        </ion-item>
 
+                      <ion-item-group>
+                          <ion-item >
+                        
+                              <ion-label>Like</ion-label>
+                              <ion-checkbox  color="dark" checked="false" (change)="toggleEditable($event)"></ion-checkbox>
+                            </ion-item>
+                            
+                            <ion-item>
+                              <ion-label>DisLikes</ion-label>
+                              <ion-checkbox  checked="false" (change)="toggleEditable($event)" ></ion-checkbox>
+                            </ion-item>
+
+
+                      </ion-item-group>
+                      
+                     
+                          
+    
+
+                          
+                        
+                      
                    
                        <!--- Likes-->
                        
 
 
                       <ion-card>
-                          <ion-list>
+                          <ion-list >
                               <h1>Comentarios</h1>
                             <ion-item *ngFor="let coment of coments | async">
                               

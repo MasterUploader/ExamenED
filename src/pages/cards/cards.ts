@@ -26,10 +26,17 @@ import {
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+@IonicPage(
+
+)
+  
+
+
+
 @Component({
   selector: 'page-cards',
   templateUrl: 'cards.html',
+  
 })
 export class CardsPage {
   currentUser:any;
@@ -41,14 +48,6 @@ export class CardsPage {
   comentsRef:any;
   langs;
   langForm;
-  
-  
-  @ViewChild ('like') lk;
-  @ViewChild ('dislike') dlk;
- 
- 
-
-  
  
   constructor(
     public navCtrl: NavController, 
@@ -345,6 +344,13 @@ export class CardsPage {
       return false;
   }*/
 
+  toggleEditable(event){
+    console.log('entro', event);
+    if ( event.target.checked ) {
+      
+ }
+
+  }
   
 
   doSubmit(event) {
