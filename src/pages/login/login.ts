@@ -77,12 +77,22 @@ loginWithEmail(){
       this.showAlert('Success! you\'re logged in by Email');
       this.storage.set('statelogin', 'true');
       this.storage.set('providers',this.provider);
-    	this.navCtrl.setRoot(MainPage, this.provider);
+      this.navCtrl.setRoot(MainPage, this.provider);
+
+      const userRef = this.afDatabase.list('users');
+      userRef.update(response.user.uid,{
+        userId: this.email.value,
+        
+
+      })
+      
   	})
   	.catch( error => {
   		console.log('got error',error);
   		this.showAlert(error.message);
 });
+
+
 
   
 

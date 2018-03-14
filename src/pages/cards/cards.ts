@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { IonicPage, 
   NavController, 
   NavParams, 
@@ -10,6 +10,11 @@ import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { AngularFireAuth} from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import { Observable } from '@firebase/util';
+import {
+  FormGroup,
+  FormControl
+
+} from '@angular/forms';
 
 
 
@@ -34,6 +39,16 @@ export class CardsPage {
   
   coments: AngularFireList<any>;
   comentsRef:any;
+  langs;
+  langForm;
+  
+  
+  @ViewChild ('like') lk;
+  @ViewChild ('dislike') dlk;
+ 
+ 
+
+  
  
   constructor(
     public navCtrl: NavController, 
@@ -48,8 +63,11 @@ export class CardsPage {
     this.cards = this.cardsRef.valueChanges();
     this.comentsRef = afDatabase.list('Coments');
     this.coments = this.comentsRef.valueChanges();
-    
 
+   
+
+
+  
   
     afAuth.authState.subscribe(user => {
       if (!user) {
@@ -100,13 +118,15 @@ export class CardsPage {
               subTitle: data.subTitle,
               nombre: this.currentUser.nombre,
               photo: this.currentUser.photoURL,
-              uid: this.currentUser.uid
+              uid: this.currentUser.uid,
+              state:this.langForm.value
             });
           }
         }
       ]
     });
     prompt.present();
+    
   }
 
   //Fin metodo Agregar Tarjeta
@@ -268,7 +288,7 @@ export class CardsPage {
 
   }
 
-  //Metodo Actualizar Comentario
+  //Metodo Agregar Comentario
 
   addComent(cardId, cardUID){
     let prompt = this.alertCtrl.create({
@@ -315,8 +335,43 @@ export class CardsPage {
     prompt.present();
   }
 
+  //Fin metodo Agregar Comentario
+
+  /*
+  verificaVisibilidad(coment){
+    if (coment.uidC != this.currentUser.uid)
+      return true;
+    else  
+      return false;
+  }*/
+
+  
+
+  doSubmit(event) {
+    console.log('Submitting form', this.langForm.value);
+    event.preventDefault();
+}
+
+
+}
+      
+  
+
+
+
+
+
+    
+    
+    
+  
+
+
+  
+  
+
 
  
 
-}
+
 
